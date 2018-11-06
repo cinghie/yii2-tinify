@@ -21,13 +21,13 @@ or add this line to the require section of your `composer.json` file.
 Usage
 -----------------
 
-Initialize component
+Initialize component: https://tinypng.com/developers/reference/php#authentication
 
 ```
 $tinify = new Tinify(['apiKey' => 'YOUR API KEY']);
 ```
 
-Compress image from Path
+Compress image from Path: https://tinypng.com/developers/reference/php#compressing-images)
 
 ```
 // create a new image
@@ -36,19 +36,19 @@ $tinify->compress('path/to/file/to/compress','path/to/file/after/compression');
 $tinify->compress('path/to/file/to/compress');
 ```
 
-Compress image from Buffer
+Compress image from Buffer: https://tinypng.com/developers/reference/php#compressing-images)
 
 ```
 $tinify->compressFromBuffer('path/to/file/to/compress');
 ```
 
-Compress image from Url
+Compress image from Url: https://tinypng.com/developers/reference/php#compressing-images)
 
 ```
 $tinify->compressFromUrl('https://tinypng.com/images/panda-happy.png','path/to/file/after/compression');
 ```
 
-Resize image
+Resize image: https://tinypng.com/developers/reference/php#resizing-images
 
 ```
 // create a new image
@@ -59,21 +59,21 @@ $tinify->resize('path/to/file/to/compress',null,['method' => 'fit', 'width' => 1
 scale,fit,cover,thumb
 ```
 
-Store image to Amazon S3
+Store image to Amazon S3: https://tinypng.com/developers/reference/php#saving-to-amazon-s3
 
 ```
-$tinify = new Tinify([
-	'apiKey' => 'YOUR API KEY',
-	'aws_access_key_id' => 'AKIAIOSFODNN7EXAMPLE',
-    'aws_secret_access_key' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
-    'region' => 'us-west-1',
-    'headers' => array('Cache-Control' => 'max-age=31536000, public'),
-    'path' => 'example-bucket/my-images/optimized.jpg'
+$tinify = new Tinify([  
+	'apiKey' => 'YOUR API KEY',  
+	'aws_access_key_id' => 'AKIAIOSFODNN7EXAMPLE',  
+	'aws_secret_access_key' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',  
+	'region' => 'us-west-1',  
+	'headers' => array('Cache-Control' => 'max-age=31536000, public'),  
+	'path' => 'example-bucket/my-images/optimized.jpg'
 ]);
 $tinify->storeToAmazonS3('path/to/file/to/compress');
 ```
 
-Compressions used this month
+Compressions used this month: https://tinypng.com/developers/reference/php#compression-count
 
 ```
 $count = $tinify->usage();
