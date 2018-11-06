@@ -1,0 +1,25 @@
+{
+    "name": "cinghie/yii2-tinify",
+    "description": "Yii2 integration for TinyPng",
+    "keywords": ["yii2", "yii2 tinypng", "yii2 tinify", "yii2 optimization", "yii2 compression", "yii2 image compression", "yii2 image optimization"],
+    "homepage": "https://github.com/cinghie/yii2-tinify",
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Gogodigital.it",
+            "email": "info@gogodigital.it",
+            "homepage": "http://www.gogodigital.it/"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "^2.0.15",
+        "tinify/tinify": "^1.5.2",
+        "roave/security-advisories": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "cinghie\\tinify\\": ""
+        }
+    }
+}
