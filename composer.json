@@ -13,9 +13,8 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "^2.0.15",
-        "tinify/tinify": "^1.5.2",
-        "roave/security-advisories": "dev-master"
+        "yiisoft/yii2": "^2.0.14",
+        "tinify/tinify": "^1.5.2"
     },
     "autoload": {
         "psr-4": {
