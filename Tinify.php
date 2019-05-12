@@ -7,7 +7,7 @@
  * @github https://github.com/cinghie/yii2-media
  * @license BSD-3-Clause
  * @package yii2-tinify
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 namespace cinghie\tinify;
@@ -65,7 +65,7 @@ class Tinify extends Component
 	public function init()
 	{
 		if (!$this->apiKey) {
-			throw new InvalidConfigException('The TinyPNG apiKey must be in set in ' . \get_class($this) . '.');
+			throw new InvalidConfigException('The TinyPNG apiKey must be in set in ' . get_class($this) . '.');
 		}
 
 		if($this->proxy) {
@@ -141,7 +141,7 @@ class Tinify extends Component
 	public function resize($sourceImage, $destinationImage = null, $options = ['method' => 'fit', 'width' => 150, 'height' => 100])
 	{
 		$destinationImage = $destinationImage ?: $sourceImage;
-		$source  = BaseTinify\fromFile($sourceImage);
+		$source = BaseTinify\fromFile($sourceImage);
 		$resized = $source->resize($options);
 		$resized->toFile($destinationImage);
 	}
@@ -157,12 +157,12 @@ class Tinify extends Component
 	{
 		$source = BaseTinify\fromFile($sourceImage);
 		$source->store(array(
-			'service' => 's3',
 			'aws_access_key_id' => $this->amazon_access_key_id,
 			'aws_secret_access_key' => $this->amazon_secret_access_key,
-			'region' => $this->amazon_region,
 			'headers' => $this->amazon_headers,
-			'path' => $this->amazon_path
+			'path' => $this->amazon_path,
+			'region' => $this->amazon_region,
+			'service' => 's3'
 		));
 	}
 
