@@ -16,13 +16,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require cinghie/yii2-tinify "^1.0.0"
+php composer.phar require cinghie/yii2-tinify "^1.0.1"
 ```
 
 or add this line to the require section of your `composer.json` file.
 
 ```
-"cinghie/yii2-tinify": "^1.0.0"
+"cinghie/yii2-tinify": "^1.0.1"
 ```
 
 Usage
@@ -71,11 +71,11 @@ Store image to Amazon S3: https://tinypng.com/developers/reference/php#saving-to
 ```
 $tinify = new Tinify([  
 	'apiKey' => 'YOUR API KEY',  
-	'aws_access_key_id' => 'AKIAIOSFODNN7EXAMPLE',  
-	'aws_secret_access_key' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',  
-	'region' => 'us-west-1',  
+	'aws_access_key_id' => 'YOUR_AWS_ID_KEY',  
+	'aws_secret_access_key' => 'YOUR_AWS_ACCESS_KEY', 
 	'headers' => array('Cache-Control' => 'max-age=31536000, public'),  
-	'path' => 'example-bucket/my-images/optimized.jpg'
+    'path' => 'example-bucket/my-images/optimized.jpg', 
+	'region' => 'us-west-1'
 ]);
 $tinify->storeToAmazonS3('path/to/file/to/compress');
 ```
