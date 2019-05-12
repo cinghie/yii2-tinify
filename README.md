@@ -73,8 +73,8 @@ $tinify = new Tinify([
 	'apiKey' => 'YOUR API KEY',  
 	'aws_access_key_id' => 'YOUR_AWS_ID_KEY',  
 	'aws_secret_access_key' => 'YOUR_AWS_ACCESS_KEY', 
-	'headers' => array('Cache-Control' => 'max-age=31536000, public'),  
-    'path' => 'example-bucket/my-images/optimized.jpg', 
+	'headers' => array('Cache-Control' => 'max-age=31536000, public'),
+	'path' => 'example-bucket/my-images/optimized.jpg', 
 	'region' => 'us-west-1'
 ]);
 $tinify->storeToAmazonS3('path/to/file/to/compress');
