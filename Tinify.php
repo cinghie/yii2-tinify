@@ -7,7 +7,7 @@
  * @github https://github.com/cinghie/yii2-media
  * @license BSD-3-Clause
  * @package yii2-tinify
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 namespace cinghie\tinify;
