@@ -152,7 +152,11 @@ class Tinify extends Component
 	}
 
 	/**
+	 * Converting images
+	 *
 	 * @param string $sourceImage
+	 * @param string $destinationImage
+	 * @param array $options
 	 *
 	 * @see https://tinypng.com/developers/reference/php#converting-images
 	 */
