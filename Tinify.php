@@ -162,7 +162,7 @@ class Tinify extends Component
 		$source = BaseTinify\fromFile($sourceImage);
 		$converted = $source->convert($options);
 		$extension = $converted->result()->extension();
-		$pos = strrpos($destinationImage, ".");
+		$pos = strrchr($destinationImage, ".");
 		$destinationImage = substr($destinationImage, 0, $pos);
 		$converted->toFile($destinationImage.'.'.$extension);
 	}
