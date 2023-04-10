@@ -17,42 +17,45 @@ use yii\base\Component;
 use yii\base\InvalidConfigException;
 use yii\web\UnauthorizedHttpException;
 
+/**
+ * Class Tinify
+ */
 class Tinify extends Component
 {
 	/**
 	 * @var string $amazon_access_key_id
 	 */
-	public $amazon_access_key_id;
+	public string $amazon_access_key_id;
 
 	/**
 	 * @var string $amazon_secret_access_key
 	 */
-	public $amazon_secret_access_key;
+	public string $amazon_secret_access_key;
 
 	/**
 	 * @var string $amazon_region
 	 */
-	public $amazon_region;
+	public string $amazon_region;
 
 	/**
 	 * @var string $amazon_headers
 	 */
-	public $amazon_headers;
+	public string $amazon_headers;
 
 	/**
 	 * @var string $amazon_path
 	 */
-	public $amazon_path;
+	public string $amazon_path;
 
 	/**
 	 * @var string $apiKey
 	 */
-	public $apiKey;
+	public string $apiKey;
 
 	/**
 	 * @var string $proxy
 	 */
-	public $proxy;
+	public string $proxy;
 
 	/**
 	 * Initialize Component
@@ -60,7 +63,7 @@ class Tinify extends Component
 	 * @throws InvalidConfigException if $apiKey is not set
 	 * @throws UnauthorizedHttpException if $apiKey is not validated
 	 *
-	 * See [TinyPng docs](https://tinypng.com/developers/reference/php#authentication)
+	 * @see https://tinypng.com/developers/reference/php#authentication
 	 */
 	public function init()
 	{
@@ -76,7 +79,9 @@ class Tinify extends Component
 			BaseTinify\setKey($this->apiKey);
 			BaseTinify\validate();
 		} catch(BaseTinify\Exception $e) {
-			throw new UnauthorizedHttpException('The TinyPNG apiKey '.$this->apiKey.' could not be validated.');
+			$message = 'The error message is: '.$e->getMessage().'<br><br>>';
+			$message .= 'The TinyPNG apiKey '.$this->apiKey.' could not be validated';
+			throw new UnauthorizedHttpException($message);
 		}
 	}
 
@@ -86,7 +91,7 @@ class Tinify extends Component
 	 * @param string $sourceImage
 	 * @param string $destinationImage
 	 *
-	 * See [TinyPng docs](https://tinypng.com/developers/reference/php#compressing-images)
+	 * @see https://tinypng.com/developers/reference/php#compressing-images
 	 */
 	public function compress($sourceImage, $destinationImage = null)
 	{
@@ -102,7 +107,7 @@ class Tinify extends Component
 	 *
 	 * @return mixed
 	 *
-	 * See [TinyPng docs](https://tinypng.com/developers/reference/php#compressing-images)
+	 * @see https://tinypng.com/developers/reference/php#compressing-images
 	 */
 	public function compressFromBuffer($bufferImage)
 	{
@@ -117,7 +122,7 @@ class Tinify extends Component
 	 * @param string $urlImage
 	 * @param string $destinationImage
 	 *
-	 * See [TinyPng docs](https://tinypng.com/developers/reference/php#compressing-images)
+	 * @see https://tinypng.com/developers/reference/php#compressing-images
 	 */
 	public function compressFromURL($urlImage, $destinationImage)
 	{
@@ -136,7 +141,7 @@ class Tinify extends Component
 	 * - int width
 	 * - int height
 	 *
-	 * See [TinyPng docs](https://tinypng.com/developers/reference/php#resizing-images)
+	 * @see https://tinypng.com/developers/reference/php#resizing-images
 	 */
 	public function resize($sourceImage, $destinationImage = null, $options = ['method' => 'fit', 'width' => 150, 'height' => 100])
 	{
@@ -147,11 +152,27 @@ class Tinify extends Component
 	}
 
 	/**
+	 * @param string $sourceImage
+	 *
+	 * @see https://tinypng.com/developers/reference/php#converting-images
+	 */
+	public function convert($sourceImage, $destinationImage = null, $options = ['type' => ['image/webp','image/png']])
+	{
+		$destinationImage = $destinationImage ?: $sourceImage;
+		$source = BaseTinify\fromFile($sourceImage);
+		$converted = $source->convert($options);
+		$extension = $converted->result()->extension();
+		$pos = strrpos($destinationImage, ".");
+		$destinationImage = substr($destinationImage, 0, $pos);
+		$converted->toFile($destinationImage.'.'.$extension);
+	}
+
+	/**
 	 * Store image to Amazon S3
 	 *
 	 * @param $sourceImage
 	 *
-	 * See [TinyPng docs](https://tinypng.com/developers/reference/php#saving-to-amazon-s3)
+	 * @see https://tinypng.com/developers/reference/php#saving-to-amazon-s3
 	 */
 	public function storeToAmazonS3($sourceImage)
 	{
@@ -169,7 +190,7 @@ class Tinify extends Component
 	/**
 	 * Gets compressions used this month
 	 *
-	 * See [TinyPng docs](https://tinypng.com/developers/reference/php#compression-count)
+	 * @see https://tinypng.com/developers/reference/php#compression-count
 	 */
 	public function compressCount()
 	{
